@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-03 12:41:43
  * @LastEditors: lihao
- * @LastEditTime: 2021-03-04 10:39:54
+ * @LastEditTime: 2021-03-05 09:23:07
  */
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
@@ -25,6 +25,12 @@ const routes: Array<RouteConfig> = [
     name: "Index",
     component: () =>
       import( "../views/Index.vue")
+  },
+  {
+    path: "/ribbonEffect",
+    name: "RibbonEffect",
+    component: () =>
+      import( "../views/ribbonEffect.vue")
   }
 ];
 
