@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-06 09:42:28
  * @LastEditors: lihao
- * @LastEditTime: 2021-03-06 12:25:38
+ * @LastEditTime: 2021-03-06 12:45:38
 -->
 <template>
     <div class="completion">
@@ -27,11 +27,6 @@ export default {
         getCompletion() {
             const str = "12345${replace}6789012345${replace}67890"
             this.completionArr = str.split("${replace}")
-            // this.completionArr. forEach((item, index) => {
-            //     if(index < this.completionArr.length && item !== '') {
-            //         this.completionArr.splice(index + 1, 0, '')
-            //     }
-            // })
         },
         initCompletion() {
             const item = document.getElementsByClassName('completionItem')
@@ -46,9 +41,11 @@ export default {
                 inputEle[i].style.borderBottom = '1px solid black'
                 inputEle[i].style.width = '30px'
                 inputEle[i].addEventListener('keydown',function(e) {
+                        if( e.keyCode === 13) {
+                            return false
+                            }
                         const num = inputEle[i].value.split("").length
                         inputEle[i].style.width = (30 + (num * 10 )) + 'px'
-                        console.log(inputEle[i].style.width)
                     })
             }
         }
