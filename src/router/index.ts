@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-03 12:41:43
  * @LastEditors: lihao
- * @LastEditTime: 2021-03-06 09:43:10
+ * @LastEditTime: 2021-03-10 10:40:26
  */
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
@@ -37,6 +37,12 @@ const routes: Array<RouteConfig> = [
     name: "Completion",
     component: () =>
       import( "../views/Completion.vue")
+  },
+  {
+    path: "/text",
+    name: "Text",
+    component: () =>
+      import( "../views/Text.vue")
   }
 ];
 

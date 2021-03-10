@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-03 12:41:43
  * @LastEditors: lihao
- * @LastEditTime: 2021-03-04 11:16:21
+ * @LastEditTime: 2021-03-10 11:37:24
  */
 import Vue from "vue";
 import App from "./App.vue";
@@ -17,7 +17,7 @@ Vue.config.productionTip = false;
 Vue.use(ElementUI);
 
 
-var instance = axios.create();
+const instance = axios.create();
 instance.interceptors.response.use(response => {
   if (response && response.data) {
       if(response.data.code === -1) {
