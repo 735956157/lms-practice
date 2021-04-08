@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-04-08 09:27:50
  * @LastEditors: lihao
- * @LastEditTime: 2021-04-08 15:17:02
+ * @LastEditTime: 2021-04-08 16:57:57
 -->
 <template>
     <div class="list-box">
@@ -21,6 +21,8 @@
                 layout="prev, pager, next"
                 :total="total"
                  @current-change="handleCurrentChange"
+                 :page-count="pageCount"
+                 :page-size="pageSize"
                 >
             </el-pagination>
         </div>
@@ -31,13 +33,20 @@ export default {
     data() {
         return {
             isShow: 0,
-            pageSize: 10,
-            showArr: Array(100),
-            total: 100
+            //每页显示的条数
+            pageSize: 100,
+            showArr: Array(300),
+            //总条数
+            total: 50,
+            //总页数
+            pageCount: 0
         }
     },
     created() {
+        this.total = this.showArr.length
         this.showArr.length = this.pageSize
+        this.pageCount = this.total / this.pageSize
+        console.log(this.pageCount)
         for(let i = 0; i < this.showArr.length; i++) {
             this.showArr[i] = i
         }
@@ -61,8 +70,9 @@ export default {
         .top {
             width: 100%;
             height: 100px;
+            line-height: 100px;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
         }
         .content {
             flex: 1;
