@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-10 10:39:14
  * @LastEditors: lihao
- * @LastEditTime: 2021-03-10 11:56:11
+ * @LastEditTime: 2021-03-10 15:43:12
 -->
 <template>
     <div class="text-box">
@@ -16,7 +16,7 @@
             <p class="part1 part2">
                 “因为借贷不还，催生了要账群体，引发一些社会隐患。”尤立增说，一些个人或企业因为长期要不回欠款，采取谩骂、恐吓、毁坏财物、殴打、非法拘禁等非法手段追要或雇佣恶势力追逃，更有甚者，采取极端手段残害对方，给当事双方造成重大物质损失和精神痛苦。社会信用体系建设尚存在一些问题，民盟中央的提案提到，比如，社会信用体系方面的立法有待完善，顶层立法缺失，部门及地方立法混乱。目前，缺少信用建设的专门机构，缺乏统一的信用评价标准，尚未建立信用信息数据库，信用信息的公开度较低、公示混乱。
             </p>
-            <p class="part3">
+            <p class="part3" align="right">
                 <img class="logo" src="../assets/lmslogo.png" alt="">
                 民盟中央的提案建议，协调各部门及中央、省市地方的信息平台，将分散的信用信息收集起来整合、加工、利用，从而建立个人和企业信用档案，形成大数据库。对非隐私的信用档案可以进行公开查询或者允许专业征信机构进行查询。这样社会主体在进行活动时，可以首先对交易对方的信用信息进行查询，以判断交易安全与否。全国人大代表、北京市房山区法院立案庭庭长厉莉今年关注的是矛盾纠纷多元化解，她也建议推进社会诚信体系建设，以诚信为诉源治理赋能，将合同的自动履行、调解协议的自动履行，纳入个人和机构的诚信评价体系，以引领市场主体诚信经营，提升多元解纷的权威性和终局性。民盟中央建议，应该制定一部统一适用于全国的征信法律，明确规范信用信息的概念范畴、信用体系建设的具体方式、实施机构、信用评价标准、惩治措施等，将目前政府部门制定行业或者地方的信用评价标准、惩治措施的做法变更为统一立法、由专门的信用管理机构负责，其他职能部门仅负责向专门的信用管理机构提供信用信息。
             </p>
@@ -40,7 +40,9 @@ export default {
     },
     methods: {
         getImageBtn() {
-            html2canvas(this.$refs.text).then(canvas => {
+            html2canvas(this.$refs.text,{
+                width: this.$refs.text.clientWidth
+            }).then(canvas => {
                 this.imageUrl = canvas.toDataURL('image/png')
                 this.imageDownload(this.imageUrl)
             })
@@ -66,9 +68,9 @@ export default {
         } 
         p {
             margin: 20px 0;
+            text-indent: 50px;
         }
         .part1 {
-        text-indent: 50px;
         padding: 0px 20px;
         overflow: hidden;
         white-space: nowrap;
@@ -81,8 +83,6 @@ export default {
             white-space: normal;
         }
         .part3 {
-            text-indent: 50px;
-            align: right;
             padding: 0px 20px;
             .logo {
                 width: 80px;
@@ -94,19 +94,15 @@ export default {
         .part4 {
             display: flex;
             padding: 0px 20px;
-            p {
-                text-indent: 50px;
-                margin-right: 30px;
-            }
             .part-child1 {
                 flex: 1;
             }
             .part-child2 {
                 flex: 2;
+                margin: 0 30px;
             }
             .part-child3 {
                 flex: 3;
-                margin-right: 0;
             }
         }
     }

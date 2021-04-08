@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-03 12:41:43
  * @LastEditors: lihao
- * @LastEditTime: 2021-03-10 11:37:24
+ * @LastEditTime: 2021-04-08 10:46:35
  */
 import Vue from "vue";
 import App from "./App.vue";
@@ -11,11 +11,12 @@ import router from "./router";
 import store from "./store";
 import ElementUI from 'element-ui';
 import axios from 'axios';
+import VueScroller  from 'vue-scroller'
+Vue.use(VueScroller)
 import 'element-ui/lib/theme-chalk/index.css';
 // import './mock.api'; // 接口API
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
-
 
 const instance = axios.create();
 instance.interceptors.response.use(response => {
