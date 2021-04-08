@@ -3,22 +3,25 @@
  * @Author: lihao
  * @Date: 2021-04-08 09:27:50
  * @LastEditors: lihao
- * @LastEditTime: 2021-04-08 13:01:13
+ * @LastEditTime: 2021-04-08 15:17:02
 -->
 <template>
     <div class="list-box">
         <div class="top">我的列表</div>
-        <div class="content">
-            <el-row :gutter="20">
-                <el-col :span="8" v-for="(item, index) in showArr" :key="index"><div class="list-item">{{item+1}}</div></el-col>
-            </el-row>
+            <el-scrollbar style="height:100%">
+        <div class="content" >
+                <el-row :gutter="20">
+                    <el-col :span="8" v-for="(item, index) in showArr" :key="index"><div class="list-item">{{item+1}}</div></el-col>
+                </el-row>
         </div>
+            </el-scrollbar>
         <div class="bottom">
             <el-pagination
                 background
                 layout="prev, pager, next"
-                :total="100"
-                @current-change="handleCurrentChange">
+                :total="total"
+                 @current-change="handleCurrentChange"
+                >
             </el-pagination>
         </div>
     </div>
@@ -29,17 +32,20 @@ export default {
         return {
             isShow: 0,
             pageSize: 10,
-            showArr: [1,2,3,4,5,6,7,8,9,10],
+            showArr: Array(100),
             total: 100
+        }
+    },
+    created() {
+        this.showArr.length = this.pageSize
+        for(let i = 0; i < this.showArr.length; i++) {
+            this.showArr[i] = i
         }
     },
     methods: {
         handleCurrentChange(val) {
-            this.current = this.total / this.pageSize
-            const itemArr = this.current * val
-            console.log(itemArr)
             this.showArr = []
-            for(let i = itemArr - this.pageSize; i < itemArr; i++) {
+            for(let i = this.pageSize * (val - 1); i < this.pageSize * val; i++) {
                 this.showArr.push(i)
             }
         }
@@ -57,7 +63,6 @@ export default {
             height: 100px;
             text-align: center;
             margin-bottom: 50px;
-            overflow: hidden;
         }
         .content {
             flex: 1;
