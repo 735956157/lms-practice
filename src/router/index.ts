@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-03 12:41:43
  * @LastEditors: lihao
- * @LastEditTime: 2021-04-17 09:17:47
+ * @LastEditTime: 2021-04-17 14:32:49
  */
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
@@ -67,6 +67,12 @@ const routes: Array<RouteConfig> = [
     name: "AudioPlayClass",
     component: () =>
       import( "../views/AudioPlayClass.vue")
+  },
+  {
+    path: "/sort",
+    name: "Sort",
+    component: () =>
+      import( "../views/Sort.vue")
   }
 ];
 
