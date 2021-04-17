@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-09 13:17:29
  * @LastEditors: lihao
- * @LastEditTime: 2021-04-17 12:41:45
+ * @LastEditTime: 2021-04-17 14:05:22
  */
 class AudioPlay {
     constructor(parentEle, src) {
@@ -13,9 +13,8 @@ class AudioPlay {
     }
    init(parentEle, src) {
         const audio = document.createElement('audio')
-        audio.controls = true
-        audio.autoplay = true
         audio.src = src
+        audio.autoplay = false
         const parentE = document.querySelector(parentEle)
         parentE.appendChild(audio)
         const promise = audio.play()
@@ -31,12 +30,14 @@ class AudioPlay {
 
   static getInstance(parentEle, src) {
     if(!this.instance) {
-      this.instance = new AudioPlay(parentEle, src);
+      this.instance = new AudioPlay(parentEle, src)
+      return this.instance
+
     } else {
-        this.instance.src = src
-        this.instance.parentEle = parentEle
+      const parent =  this.getDom(parentEle)
+      parent.lastChild.src = src
+      parent.lastChild.play()
     }
-    return this.instance
   }
 }
 
