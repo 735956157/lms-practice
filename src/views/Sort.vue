@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-04-17 14:32:24
  * @LastEditors: lihao
- * @LastEditTime: 2021-04-17 17:41:26
+ * @LastEditTime: 2021-04-20 10:41:37
 -->
 <template>
   <el-table
@@ -12,6 +12,7 @@
     style="width: 100%"
     :default-sort = "{prop: 'date', order: 'ascending'}"
     @sort-change='handleSortChange'
+    :header-cell-class-name="tableRowClassName"
     >
     <el-table-column
       prop="date"
@@ -34,7 +35,6 @@
   export default {
     data() {
       return {
-        currentC: '',
         tableData: [{
           date: '2016-05-02',
           date2: '2016-05-02'
@@ -64,9 +64,14 @@
       formatter(row, column) {
         return row.address
       },
+      tableRowClassName({row,column, rowIndex, columnIndex}) {
+        this.sortArr.forEach((item) => {
+          if(item.prop === column.property) {
+            column.order = item.order
+          }
+        })
+      },
       handleSortChange({ column, prop, order }){
-        console.log(prop, order)
-        this.currentC = prop
         if(prop === 'date') {
             this.sortArr[0].order = order
         }
@@ -79,26 +84,7 @@
                 this.sortArr.length = 1
             }
         }
-        const status1 = document.querySelectorAll('.sort-caret.ascending')
-        const status2 = document.querySelectorAll('.sort-caret.descending')
-        this.sortArr.forEach((item, index) =>{
-            if(item.order === 'ascending') {
-            status1[index].style.borderBottomColor = '#409EFF'
-            status2[index].style.borderTopColor = '#C0C4CC'
-            } else if(item.order === 'descending'){
-            status1[index].style.borderBottomColor = '#C0C4CC'
-            status2[index].style.borderTopColor = '#409EFF'
-            }else {
-            status1[index].style.borderBottomColor = '#C0C4CC'
-            status2[index].style.borderTopColor = '#C0C4CC'
-            }
-        })
-        if(this.sortArr.length === 1) {
-            status1[1].style.borderBottomColor = '#C0C4CC'
-            status2[1].style.borderTopColor = '#C0C4CC'
-        }
         console.log(this.sortArr)
-
         }
         
     }
