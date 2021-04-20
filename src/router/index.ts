@@ -3,7 +3,7 @@
  * @Author: lihao
  * @Date: 2021-03-03 12:41:43
  * @LastEditors: lihao
- * @LastEditTime: 2021-04-17 14:32:49
+ * @LastEditTime: 2021-04-20 14:00:47
  */
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
@@ -73,6 +73,12 @@ const routes: Array<RouteConfig> = [
     name: "Sort",
     component: () =>
       import( "../views/Sort.vue")
+  },
+  {
+    path: "/plugin",
+    name: "Plugin",
+    component: () =>
+      import( "../views/Plugin.vue")
   }
 ];
 
